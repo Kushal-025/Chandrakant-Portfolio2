@@ -12,18 +12,18 @@ export default function Navbar({ isDark, toggleTheme }) {
   ];
 
   return (
-    <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-5xl z-50 transition-all duration-300">
+    <header className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[94%] sm:w-[92%] max-w-5xl z-50 transition-all duration-300">
       <nav
-        className={`flex items-center justify-between px-6 py-3.5 rounded-full transition-all duration-300 ${
+        className={`flex items-center justify-between px-3.5 sm:px-6 py-2.5 sm:py-3.5 rounded-full transition-all duration-300 ${
           isDark
-            ? 'bg-[#0b0f19]/85 border border-white/10 backdrop-blur-xl shadow-2xl shadow-black/40'
-            : 'bg-white/90 border border-slate-200 backdrop-blur-xl shadow-lg shadow-slate-300/30'
+            ? 'bg-[#0b0f19]/90 border border-white/10 backdrop-blur-xl shadow-2xl shadow-black/40'
+            : 'bg-white/95 border border-slate-200 backdrop-blur-xl shadow-lg shadow-slate-300/30'
         }`}
       >
         {/* Brand Name */}
         <NavLink
           to="/"
-          className="text-lg font-bold tracking-tight flex items-center gap-1.5 transition hover:scale-105"
+          className="text-base sm:text-lg font-bold tracking-tight flex items-center gap-1 transition hover:scale-105 shrink-0"
         >
           <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-yellow-400 bg-clip-text text-transparent">
             Chandra Kant
@@ -55,7 +55,7 @@ export default function Navbar({ isDark, toggleTheme }) {
         </ul>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <a
             href="tel:7990101267"
             className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 transition"
@@ -73,7 +73,7 @@ export default function Navbar({ isDark, toggleTheme }) {
             }`}
             aria-label="Toggle Theme"
           >
-            {isDark ? <Sun size={17} /> : <Moon size={17} />}
+            {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
           {/* Mobile Menu Toggle */}
@@ -84,7 +84,7 @@ export default function Navbar({ isDark, toggleTheme }) {
             }`}
             aria-label="Toggle Mobile Menu"
           >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
@@ -92,20 +92,20 @@ export default function Navbar({ isDark, toggleTheme }) {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
-          className={`md:hidden mt-3 p-5 rounded-2xl border transition-all duration-300 ${
+          className={`md:hidden mt-2 p-4 rounded-2xl border transition-all duration-300 ${
             isDark
               ? 'bg-[#0b0f19]/95 border-white/10 backdrop-blur-2xl shadow-2xl'
               : 'bg-white/95 border-slate-200 backdrop-blur-2xl shadow-xl'
           }`}
         >
-          <ul className="flex flex-col gap-3 text-center">
+          <ul className="flex flex-col gap-2 text-center">
             {navLinks.map((link) => (
               <li key={link.path}>
                 <NavLink
                   to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
-                    `flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-base font-medium transition ${
+                    `flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-medium transition ${
                       isActive
                         ? 'bg-amber-600 text-white font-semibold'
                         : isDark
@@ -119,6 +119,14 @@ export default function Navbar({ isDark, toggleTheme }) {
                 </NavLink>
               </li>
             ))}
+            <li className="pt-2 border-t border-white/10">
+              <a
+                href="tel:7990101267"
+                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30"
+              >
+                <Phone size={14} /> Call 7990101267
+              </a>
+            </li>
           </ul>
         </div>
       )}
