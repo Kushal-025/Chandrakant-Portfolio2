@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
+  }
+
+  body {
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Page Slide & Fade Transition Animation */
+@keyframes pageSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-page-slide {
+  animation: pageSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Circuit Mesh Backgrounds */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(245, 158, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-grid-pattern-light {
+  background-image: 
+    linear-gradient(rgba(217, 119, 6, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 119, 6, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Electrical & Industrial Custom Keyframes */
+@keyframes voltagePulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.3), 0 0 30px rgba(234, 88, 12, 0.2);
+    border-color: rgba(245, 158, 11, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.6), 0 0 50px rgba(234, 88, 12, 0.4);
+    border-color: rgba(251, 191, 36, 0.9);
+  }
+}
+
+@keyframes gearRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes gearRotateReverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes sparkFlash {
+  0%, 100% { opacity: 0.3; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.animate-voltage-pulse {
+  animation: voltagePulse 3s ease-in-out infinite;
+}
+
+.animate-gear-rotate {
+  animation: gearRotate 20s linear infinite;
+}
+
+.animate-gear-reverse {
+  animation: gearRotateReverse 15s linear infinite;
+}
+
+.animate-spark {
+  animation: sparkFlash 2s ease-in-out infinite;
+}
+
+.electric-card {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.electric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.25);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+/* Mobile Safe Area & iOS/Android Adjustments */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: min(0px, env(safe-area-inset-left));
+    padding-right: min(0px, env(safe-area-inset-right));
+  }
+}
